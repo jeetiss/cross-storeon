@@ -1,0 +1,16 @@
+.editorconfig
+
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+api.md
+example.gif
+
+example/
+dist/
+.travis.yml
+
+test/
+coverage/

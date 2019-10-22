@@ -1,0 +1,77 @@
+{
+  "name": "crossstore",
+  "version": "0.0.0",
+  "description": "Module for storeon to sync state at different sources",
+  "main": "index.js",
+  "author": "Ivakhnenko Dmitry",
+  "license": "MIT",
+  "repository": "jeetiss/storeon-crossstore",
+  "scripts": {
+    "clean": "rimraf api.md coverage/ dist/",
+    "lint": "eslint *.js",
+    "api": "documentation build *.js -f md -o api.md",
+    "spell": "yarn api && yaspeller *.md",
+    "test": "yarn lint && size-limit && yarn spell && jest --coverage"
+  },
+  "devDependencies": {
+    "@logux/eslint-config": "^33.0.0",
+    "@size-limit/preset-small-lib": "^2.1.6",
+    "autoprefixer": "^9.6.5",
+    "clean-publish": "^1.1.2",
+    "documentation": "^12.1.1",
+    "eslint": "^6.5.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-es5": "^1.4.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import-helpers": "^1.0.2",
+    "eslint-plugin-jest": "^22.20.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prefer-let": "^1.0.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-unicorn": "^12.1.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "parcel-bundler": "^1.12.4",
+    "rimraf": "^3.0.0",
+    "storeon": "^0.9.5",
+    "yaspeller": "^6.0.2"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "131 B"
+    }
+  ],
+  "lint-staged": {
+    "*.md": "yaspeller",
+    "*.js": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && size-limit"
+    }
+  },
+  "yaspeller": {
+    "lang": "en",
+    "ignoreCapitalization": true,
+    "dictionary": [
+      "storeon",
+      "versioning",
+      "crossStore",
+      "gzipped",
+      "GitHub"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "@logux/eslint-config/browser",
+    "rules": {
+      "node/no-unpublished-require": "off",
+      "es5/no-es6-static-methods": "off",
+      "node/no-missing-require": "off",
+      "func-style": "off"
+    }
+  }
+}
