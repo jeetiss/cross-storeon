@@ -1,4 +1,4 @@
-# Storeon Crosstab
+# Storeon Crossstore
 
 <img src="https://storeon.github.io/storeon/logo.svg" align="right"
      alt="Storeon logo by Anton Lovchikov" width="140">
