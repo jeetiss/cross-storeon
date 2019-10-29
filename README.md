@@ -1,4 +1,4 @@
-# Storeon Crossstore
+# Cross Storeon
 
 <img src="https://storeon.github.io/storeon/logo.svg" align="right"
      alt="Storeon logo by Anton Lovchikov" width="140">
@@ -14,21 +14,21 @@ It size is 131 bytes (minified and gzipped) and uses [Size Limit] to control siz
 ## Installation
 
 ```
-npm install crossstore
+npm install cross-storeon
 # or
-yarn add crossstore
+yarn add cross-storeon
 ```
 
 ## API
 
 ```js
-import crossStore from 'crossstore'
+import crossstore from 'cross-storeon'
 
 const crossTab = function ({ key, filter }) {
   var ignoreDate = 0
   var counter = 0
 
-  return crossStore({
+  return crossstore({
     key,
     filter,
     send: function (event) {
@@ -51,7 +51,7 @@ const crossTab = function ({ key, filter }) {
 }
 ```
 
-Function `crossStore` could have options:
+Function `crossstore` could have options:
 
 * __key__: key.
 * __filter__: callback function to filter actions to be synchronized. Should return `true` if need sync this action. Takes parameters of an event name and a data that is sent.

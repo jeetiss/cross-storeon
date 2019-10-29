@@ -1,6 +1,6 @@
 {
-  "name": "crossstore",
-  "version": "0.0.0",
+  "name": "cross-storeon",
+  "version": "0.0.1",
   "description": "Module for storeon to sync state at different sources",
   "main": "index.js",
   "author": "Ivakhnenko Dmitry",
@@ -42,7 +42,7 @@
   "size-limit": [
     {
       "path": "index.js",
-      "limit": "131 B"
+      "limit": "135 B"
     }
   ],
   "lint-staged": {
@@ -60,6 +60,7 @@
     "dictionary": [
       "storeon",
       "versioning",
+      "Crossstore",
       "crossStore",
       "gzipped",
       "GitHub"
