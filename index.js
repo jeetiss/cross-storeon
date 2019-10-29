@@ -10,9 +10,7 @@
  */
 
 var crossStore = function (config) {
-  config = config || {}
-
-  var key = config.key || 'crossStore'
+  var key = config.key || 'crossstore'
   var send = config.send
   var subscribe = config.subscribe
   var filter = config.filter
