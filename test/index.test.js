@@ -2,7 +2,7 @@ let createStore = require('storeon')
 
 let crossstore = require('../')
 
-let defaultKey = 'crossStore'
+let defaultKey = 'crossstore'
 
 let createCallbacks = (key = defaultKey) => {
   let type = 'simulate'
@@ -29,8 +29,8 @@ function increment (store) {
     return { count: 0, trim: true }
   })
 
-  store.on('inc', state => {
-    return { count: state.count + 1 }
+  store.on('inc', (state, value = 1) => {
+    return { count: state.count + value }
   })
 }
 
@@ -50,20 +50,19 @@ it('dispatch actions calls send', () => {
 
 it('simulate actions update state', () => {
   let eventName = 'inc'
-  let data = { hello: 'world' }
   let { send, subscribe, simulate } = createCallbacks()
 
   let store = createStore([increment, crossstore({ send, subscribe })])
 
-  simulate(eventName, data)
-  simulate(eventName, data)
+  simulate(eventName, 1)
+  simulate(eventName, 2)
 
   expect(send).not.toHaveBeenCalled()
   expect(subscribe).toHaveBeenCalledTimes(1)
 
   let { count } = store.get()
 
-  expect(count).toBe(2)
+  expect(count).toBe(3)
 })
 
 it('filtering dispatch actions', () => {
@@ -105,4 +104,23 @@ it('filtering more dispatch actions', () => {
   expect(send).toHaveBeenCalledTimes(2)
   expect(subscribe).toHaveBeenCalledTimes(1)
   expect(send).toHaveBeenCalledWith([defaultKey, eventName, dataSecond])
+})
+
+it('stores with different keys do not intersect', () => {
+  let eventName = 'inc'
+  let { send, subscribe } = createCallbacks()
+  let { simulate } = createCallbacks('different-key')
+
+  let store = createStore([
+    increment, crossstore({ send, subscribe })
+  ])
+
+  store.dispatch(eventName, 1)
+
+  simulate('inc', 2)
+
+  expect(send).toHaveBeenCalledTimes(1)
+  expect(subscribe).toHaveBeenCalledTimes(1)
+
+  expect(store.get().count).toBe(1)
 })
